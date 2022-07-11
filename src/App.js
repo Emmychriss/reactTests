@@ -78,15 +78,6 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: "black",
-      color: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "10px",
-      cursor: "pointer",
-    };
-
     const outputStyle = {
       border: "5px solid black",
       backgroundColor: "white",
@@ -101,6 +92,8 @@ class App extends Component {
     };
 
     let persons = null;
+    let btnClass = "";
+
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -120,7 +113,7 @@ class App extends Component {
         </div>
       );
 
-      style.backgroundColor = "green";
+      btnClass = Classes.Green;
     }
 
     const charCompInputs = this.state.taskUserInput.split("").map((el, i) => {
@@ -151,7 +144,7 @@ class App extends Component {
         <p className={assignedClasses.join(" ")}>
           This is a simple text below the header element
         </p>
-        <button style={style} onClick={this.togglePersonsHandler}>
+        <button onClick={this.togglePersonsHandler} className={btnClass}>
           click to toggle Persons (on/off)
         </button>
 
