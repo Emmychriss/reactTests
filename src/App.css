@@ -9,3 +9,25 @@
 .bold {
   font-weight: bold;
 }
+
+.App button {
+  background-color: black;
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.App button:hover {
+  background-color: rgb(110, 105, 105);
+  color: white;
+}
+
+.App button.Green {
+  background-color: green;
+}
+
+.App button.Green:hover {
+  background-color: rgb(104, 153, 104);
+}
