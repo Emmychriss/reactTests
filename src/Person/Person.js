@@ -2,7 +2,9 @@ import React from "react";
 import "./Person.css";
 
 const fiveYears = 5;
+
 const person = (props) => {
+
   return (
     <div className="Person">
       <p onClick={props.clickDel}>
@@ -10,7 +12,7 @@ const person = (props) => {
         {fiveYears} years time, I would be {+props.age + fiveYears} years old
       </p>
       <p>{props.children}</p>
-      <input type="text" onChange={props.changed} value={props.name  } />
+      <input type="text" onChange={props.changed} value={props.name} />
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import Radium from "radium";
 import Person from "./Person/Person.js";
 import Validate from "./ValidationComp";
 import CharComp from "./CharComponent";
@@ -86,9 +85,6 @@ class App extends Component {
       border: "1px solid blue",
       padding: "10px",
       cursor: "pointer",
-      ":hover": {
-        backgroundColor: "lightblack",
-      },
     };
 
     const outputStyle = {
@@ -125,9 +121,6 @@ class App extends Component {
       );
 
       style.backgroundColor = "green";
-      style[":hover"] = {
-        backgroundColor: "lightgreen",
-      };
     }
 
     const charCompInputs = this.state.taskUserInput.split("").map((el, i) => {
@@ -179,4 +172,4 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;
