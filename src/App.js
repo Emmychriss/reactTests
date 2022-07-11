@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import Classes from "./App.css";
 import Person from "./Person/Person.js";
 import Validate from "./ValidationComp";
 import CharComp from "./CharComponent";
@@ -14,7 +14,7 @@ class App extends Component {
     otherState: "This is another state",
     taskStates: [{ name: "Blake" }, { name: "Tony" }, { name: "Hannah" }],
     showPersons: false,
-    taskUserInput: " ",
+    taskUserInput: "",
   };
 
   btnClickHandler = (newName) => {
@@ -136,19 +136,19 @@ class App extends Component {
       );
     });
 
-    const classes = [];
+    const assignedClasses = [];
 
     if (this.state.personAttr.length <= 2) {
-      classes.push("red"); // ["red"]
+      assignedClasses.push(Classes.red); // ["red"]
     }
     if (this.state.personAttr.length <= 1) {
-      classes.push("bold"); // ["red", "bold"]
+      assignedClasses.push(Classes.bold); // ["red", "bold"]
     }
 
     return (
-      <div className="App">
+      <div className={Classes.App}>
         <h1>Hi, I am a react developer</h1>
-        <p className={classes.join(" ")}>
+        <p className={assignedClasses.join(" ")}>
           This is a simple text below the header element
         </p>
         <button style={style} onClick={this.togglePersonsHandler}>
