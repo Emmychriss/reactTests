@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Classes from "./App.css";
-import Person from "../Components/Persons/Person/Person";
+import Persons from "../Components/Persons/Persons";
 import Validate from "../Components/ValidationComp";
 import CharComp from "../Components/CharComponent";
+import Cockpit from "../Components/Cockpit/Cockpit";
 
 class App extends Component {
   state = {
@@ -92,28 +93,15 @@ class App extends Component {
     };
 
     let persons = null;
-    let btnClass = "";
 
     if (this.state.showPersons) {
       persons = (
-        <div>
-          {this.state.personAttr.map((personEl, i, _) => {
-            return (
-              <Person
-                clickDel={() => this.deletePersonsHandler(i)}
-                name={personEl.name}
-                age={personEl.age}
-                key={personEl.id}
-                changed={(changeEvent) =>
-                  this.nameChangeHandler(changeEvent, personEl.id)
-                }
-              />
-            );
-          })}
-        </div>
+        <Persons
+          personAttr={this.state.personAttr}
+          clickDel={this.deletePersonsHandler}
+          nameChange={this.nameChangeHandler}
+        />
       );
-
-      btnClass = Classes.Green;
     }
 
     const charCompInputs = this.state.taskUserInput.split("").map((el, i) => {
@@ -129,32 +117,16 @@ class App extends Component {
       );
     });
 
-    const assignedClasses = [];
-
-    if (this.state.personAttr.length <= 2) {
-      assignedClasses.push(Classes.red); // ["red"]
-    }
-    if (this.state.personAttr.length <= 1) {
-      assignedClasses.push(Classes.bold); // ["red", "bold"]
-    }
-
     return (
       <div className={Classes.App}>
-        <h1>Hi, I am a react developer</h1>
-        <p className={assignedClasses.join(" ")}>
-          This is a simple text below the header element
-        </p>
-        <button onClick={this.togglePersonsHandler} className={btnClass}>
-          click to toggle Persons (on/off)
-        </button>
-
-        <hr />
-        <input
-          type="text"
-          onChange={this.tChange}
-          value={this.state.taskUserInput}
+        <Cockpit
+          showPersons={this.state.showPersons}
+          personAttr={this.state.personAttr}
+          togglePersonsHandler={this.togglePersonsHandler}
+          tChange={this.tChange}
+          taskUserInput={this.state.taskUserInput}
         />
-        <p>{this.state.taskUserInput}</p>
+
         <Validate txtLength={this.state.taskUserInput.length}></Validate>
 
         {charCompInputs}
