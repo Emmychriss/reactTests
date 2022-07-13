@@ -19,7 +19,7 @@ const cockpit = (props) => {
 
   return (
     <div className={Classes.Cockpit}>
-      <h1>Hi, I am a react developer</h1>
+      <h1>{props.title}</h1>
       <p className={assignedClasses.join(" ")}>
         This is a simple text below the header element
       </p>
@@ -27,12 +27,6 @@ const cockpit = (props) => {
         click to toggle Persons (on/off)
       </button>
       <hr />
-      <input
-        type="text"
-        onChange={props.tChange}
-        value={props.taskUserInput}
-      />
-      <p>{props.taskUserInput}</p>
     </div>
   );
 };
