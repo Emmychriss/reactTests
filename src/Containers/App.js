@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Classes from "./App.css";
-import Persons from "../Components/Persons/Persons";
-import Validate from "../Components/ValidationComp";
-import CharComp from "../Components/CharComponent";
 import Cockpit from "../Components/Cockpit/Cockpit";
+import CharComps from "../Components/CharComps/CharComps";
+import Persons from "../Components/Persons/Persons";
 
 class App extends Component {
   state = {
@@ -79,19 +78,6 @@ class App extends Component {
   };
 
   render() {
-    const outputStyle = {
-      border: "5px solid black",
-      backgroundColor: "white",
-    };
-
-    const charcompStyle = {
-      display: "inline-block",
-      padding: "16px",
-      textAlign: "center",
-      margin: "16px",
-      border: "1px solid black",
-    };
-
     let persons = null;
 
     if (this.state.showPersons) {
@@ -104,32 +90,20 @@ class App extends Component {
       );
     }
 
-    const charCompInputs = this.state.taskUserInput.split("").map((el, i) => {
-      return (
-        <CharComp
-          key={i}
-          style={charcompStyle}
-          charComponent={el}
-          click={(charCompEvnt) => {
-            this.charCompInputsDel(charCompEvnt, i);
-          }}
-        />
-      );
-    });
-
     return (
       <div className={Classes.App}>
         <Cockpit
+          title = {this.props.title}
           showPersons={this.state.showPersons}
           personAttr={this.state.personAttr}
           togglePersonsHandler={this.togglePersonsHandler}
-          tChange={this.tChange}
-          taskUserInput={this.state.taskUserInput}
         />
 
-        <Validate txtLength={this.state.taskUserInput.length}></Validate>
-
-        {charCompInputs}
+        <CharComps
+          taskUserInput={this.state.taskUserInput}
+          inputDel={this.charCompInputsDel}
+          tChange={this.tChange}
+        />
 
         {persons}
       </div>
