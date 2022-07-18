@@ -3,6 +3,7 @@ import Classes from "./App.css";
 import Cockpit from "../Components/Cockpit/Cockpit";
 import CharComps from "../Components/CharComps/CharComps";
 import Persons from "../Components/Persons/Persons";
+import WithClass from "../higherOrderComps/WithClass";
 
 class App extends Component {
   constructor(props) {
@@ -102,7 +103,7 @@ class App extends Component {
     }
 
     return (
-      <div className={Classes.App}>
+      <WithClass classes={Classes.App}>
         <Cockpit
           title={this.props.title}
           showPersons={this.state.showPersons}
@@ -117,7 +118,7 @@ class App extends Component {
         />
 
         {persons}
-      </div>
+      </WithClass>
     );
   }
 
