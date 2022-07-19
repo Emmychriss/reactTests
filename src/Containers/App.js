@@ -21,6 +21,7 @@ class App extends Component {
     taskStates: [{ name: "Blake" }, { name: "Tony" }, { name: "Hannah" }],
     showPersons: false,
     taskUserInput: "",
+    changeCounter: 0,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -57,8 +58,11 @@ class App extends Component {
     const persons = [...this.state.personAttr];
     persons[personIndex] = singlePerson;
 
-    this.setState({
-      personAttr: persons,
+    this.setState((prevState, props) => {
+      return {
+        personAttr: persons,
+        changeCounter: prevState.changeCounter + 1,
+      };
     });
   };
 
