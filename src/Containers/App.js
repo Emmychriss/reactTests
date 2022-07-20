@@ -22,6 +22,7 @@ class App extends Component {
     showPersons: false,
     taskUserInput: "",
     changeCounter: 0,
+    authenticated: false,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -92,6 +93,10 @@ class App extends Component {
     });
   };
 
+  loginHandler = () => {
+    this.setState({ authenticated: true });
+  };
+
   render() {
     console.log("[App.js] render ");
     let persons = null;
@@ -102,6 +107,7 @@ class App extends Component {
           personAttr={this.state.personAttr}
           clickDel={this.deletePersonsHandler}
           nameChange={this.nameChangeHandler}
+          isAuthenticated={this.state.authenticated}
         />
       );
     }
@@ -113,6 +119,7 @@ class App extends Component {
           showPersons={this.state.showPersons}
           personAttr={this.state.personAttr}
           togglePersonsHandler={this.togglePersonsHandler}
+          login={this.loginHandler}
         />
 
         <CharComps
