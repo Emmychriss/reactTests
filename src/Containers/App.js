@@ -4,6 +4,7 @@ import Cockpit from "../Components/Cockpit/Cockpit";
 import CharComps from "../Components/CharComps/CharComps";
 import Persons from "../Components/Persons/Persons";
 import WithClass from "../higherOrderComps/WithClass";
+import AuthContext from "../context/auth-context";
 
 class App extends Component {
   constructor(props) {
@@ -114,21 +115,27 @@ class App extends Component {
 
     return (
       <WithClass classes={Classes.App}>
-        <Cockpit
-          title={this.props.title}
-          showPersons={this.state.showPersons}
-          personAttr={this.state.personAttr}
-          togglePersonsHandler={this.togglePersonsHandler}
-          login={this.loginHandler}
-        />
+        <AuthContext.Provider
+          value={{
+            authenticated: this.state.authenticated,
+            login: this.loginHandler,
+          }}
+        >
+          <Cockpit
+            title={this.props.title}
+            showPersons={this.state.showPersons}
+            personAttr={this.state.personAttr}
+            togglePersonsHandler={this.togglePersonsHandler}
+          />
+
+          {persons}
+        </AuthContext.Provider>
 
         <CharComps
           taskUserInput={this.state.taskUserInput}
           inputDel={this.charCompInputsDel}
           tChange={this.tChange}
         />
-
-        {persons}
       </WithClass>
     );
   }

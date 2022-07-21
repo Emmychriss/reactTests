@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Classes from "./Person.css";
-
 import Aux from "../../../higherOrderComps/Auxilliary";
+import AuthContext from "../../../context/auth-context";
 
 class Person extends Component {
   constructor(props) {
@@ -10,8 +10,11 @@ class Person extends Component {
     this.inputElementRef = React.createRef();
   }
 
+  static contextType = AuthContext;
+
   componentDidMount() {
     this.inputElementRef.current.focus();
+    console.log(this.context.authenticated);
   }
 
   render() {
@@ -20,7 +23,8 @@ class Person extends Component {
     console.log("[person.js] is rendering...");
     return (
       <Aux>
-        {this.props.isAuth ? <p>Authenticated</p> : <p>False</p>}
+        {this.context.authenticated ? <p>Authenticated</p> : <p>Please Log in</p>}
+
         <p onClick={this.props.clickDel}>
           I'm {this.props.name} and i am {this.props.age} years old of age. But
           in about {fiveYears} years time, I would be{" "}
