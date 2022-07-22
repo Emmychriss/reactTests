@@ -3,7 +3,8 @@ import Classes from "./App.css";
 import Cockpit from "../Components/Cockpit/Cockpit";
 import CharComps from "../Components/CharComps/CharComps";
 import Persons from "../Components/Persons/Persons";
-import WithClass from "../higherOrderComps/WithClass";
+import Aux from "../higherOrderComps/Auxilliary";
+import withClass from "../higherOrderComps/withClass";
 import AuthContext from "../context/auth-context";
 
 class App extends Component {
@@ -114,7 +115,7 @@ class App extends Component {
     }
 
     return (
-      <WithClass classes={Classes.App}>
+      <Aux>
         <AuthContext.Provider
           value={{
             authenticated: this.state.authenticated,
@@ -136,7 +137,7 @@ class App extends Component {
           inputDel={this.charCompInputsDel}
           tChange={this.tChange}
         />
-      </WithClass>
+      </Aux>
     );
   }
 
@@ -154,4 +155,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withClass(App, Classes.App);
